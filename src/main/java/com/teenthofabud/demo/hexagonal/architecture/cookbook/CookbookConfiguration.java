@@ -1,4 +1,4 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.configuration;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaAuditing
 @EnableJpaRepositories(basePackages = { "com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository" })
 @EnableTransactionManagement
-public class CookbookServiceConfiguration {
+public class CookbookConfiguration {
 
     @Profile("!test")
     @Bean

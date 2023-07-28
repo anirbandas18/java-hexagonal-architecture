@@ -1,4 +1,4 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.error;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal;
 
 import com.teenthofabud.core.common.error.TOABError;
 

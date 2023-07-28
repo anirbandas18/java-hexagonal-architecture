@@ -12,7 +12,7 @@ import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CreateCuisineRequest;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.service.CuisineService;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.error.CookbookErrorCode;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.CookbookErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.error;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driver.error;
 
 import com.teenthofabud.core.common.data.vo.ErrorVo;
 import com.teenthofabud.core.common.error.TOABBaseException;

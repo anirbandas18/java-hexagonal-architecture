@@ -8,7 +8,7 @@ import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.dr
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.CuisineJPARepository;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CreateCuisineRequest;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.error.CookbookErrorCode;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.CookbookErrorCode;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

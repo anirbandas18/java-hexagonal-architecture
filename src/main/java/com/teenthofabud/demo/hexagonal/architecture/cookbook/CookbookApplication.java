@@ -6,8 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 
 @SpringBootApplication(exclude = {TOABMongoAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class })
-public class CookbookServiceApplication {
+public class CookbookApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CookbookServiceApplication.class);
+        SpringApplication.run(CookbookApplication.class);
     }
+
 }
