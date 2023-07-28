@@ -1,6 +1,6 @@
 package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository;
 
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineRecord;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.data.CuisineRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Repository;

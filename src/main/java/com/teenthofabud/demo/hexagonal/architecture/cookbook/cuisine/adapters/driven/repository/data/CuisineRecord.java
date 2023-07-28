@@ -1,4 +1,4 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.data;
 
 import com.teenthofabud.core.common.data.entity.TOABBaseEntity;
 import lombok.*;

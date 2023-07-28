@@ -1,4 +1,4 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal;
 
 import lombok.Getter;
 

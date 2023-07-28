@@ -1,7 +1,7 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.converter;
 
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineRecord;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.entities.Cuisine;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CreateCuisineRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.converter.Converter;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class CuisineDefault2RecordConverter implements Converter<Cuisine, CuisineRecord> {
+public class CuisineRequest2DefaultConverter implements Converter<CreateCuisineRequest, Cuisine> {
 
     private List<String> fieldsToEscape;
 
@@ -21,15 +21,8 @@ public class CuisineDefault2RecordConverter implements Converter<Cuisine, Cuisin
     }
 
     @Override
-    public CuisineRecord convert(Cuisine form) {
-        CuisineRecord entity = new CuisineRecord();
-        if(!fieldsToEscape.contains("name")) {
-            entity.setName(form.getName());
-        }
-        if(!fieldsToEscape.contains("description")) {
-            entity.setDescription(form.getDescription());
-        }
-        entity.setActive(Boolean.TRUE);
+    public Cuisine convert(CreateCuisineRequest form) {
+        Cuisine entity = new Cuisine(form.getName(), form.getDescription());
         log.debug("Converting {} to {}", form, entity);
         return entity;
     }

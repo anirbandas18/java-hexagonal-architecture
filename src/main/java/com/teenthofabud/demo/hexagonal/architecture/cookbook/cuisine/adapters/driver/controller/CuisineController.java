@@ -8,8 +8,8 @@ import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.service.CuisineService;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.error.CookbookErrorCode;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineException;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineMessageTemplate;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.CuisineException;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.CuisineMessageTemplate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;

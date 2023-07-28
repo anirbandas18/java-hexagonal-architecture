@@ -1,6 +1,6 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.converter;
 
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineRecord;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.data.CuisineRecord;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.entities.Cuisine;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

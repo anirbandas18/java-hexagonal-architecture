@@ -2,7 +2,7 @@ package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports
 
 import com.teenthofabud.core.common.constant.TOABCascadeLevel;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineException;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.CuisineException;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CreateCuisineRequest;
 import org.springframework.stereotype.Service;
 

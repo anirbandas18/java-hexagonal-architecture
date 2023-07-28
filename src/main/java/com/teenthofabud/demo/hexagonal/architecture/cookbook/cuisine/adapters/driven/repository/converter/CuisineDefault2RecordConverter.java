@@ -1,7 +1,7 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.converter;
 
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.data.CuisineRecord;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.entities.Cuisine;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.converter.Converter;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class CuisineDefault2ResponseConverter implements Converter<Cuisine, CuisineDetailsResponse> {
+public class CuisineDefault2RecordConverter implements Converter<Cuisine, CuisineRecord> {
 
     private List<String> fieldsToEscape;
 
@@ -21,19 +21,17 @@ public class CuisineDefault2ResponseConverter implements Converter<Cuisine, Cuis
     }
 
     @Override
-    public CuisineDetailsResponse convert(Cuisine entity) {
-        CuisineDetailsResponse vo = new CuisineDetailsResponse();
-        if(!fieldsToEscape.contains("id")) {
-            vo.setId(entity.getId().toString());
-        }
+    public CuisineRecord convert(Cuisine form) {
+        CuisineRecord entity = new CuisineRecord();
         if(!fieldsToEscape.contains("name")) {
-            vo.setName(entity.getName());
+            entity.setName(form.getName());
         }
         if(!fieldsToEscape.contains("description")) {
-            vo.setDescription(entity.getDescription());
+            entity.setDescription(form.getDescription());
         }
-        log.debug("Converted {} to {} ", entity, vo);
-        return vo;
+        entity.setActive(Boolean.TRUE);
+        log.debug("Converting {} to {}", form, entity);
+        return entity;
     }
 
 }

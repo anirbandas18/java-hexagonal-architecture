@@ -4,18 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0c9282b-6c3d-45a2-916e-f474c8149dc7" name="Changes" comment="ignore idea files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d0c9282b-6c3d-45a2-916e-f474c8149dc7" name="Changes" comment="moved converter functionalities to adapter">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineDefault2RecordConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/converter/CuisineDefault2RecordConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineDefault2ResponseConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/converter/CuisineDefault2ResponseConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineRecord2DefaultConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/converter/CuisineRecord2DefaultConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineRequest2DefaultConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/converter/CuisineRequest2DefaultConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/data/CuisineDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/data/CuisineException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/CuisineException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/data/CuisineMessageTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/CuisineMessageTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/data/CuisineRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/data/CuisineRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/CuisineJPARepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/CuisineJPARepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/CuisineRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/CuisineRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driver/controller/CuisineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driver/controller/CuisineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/converter/CuisineDefault2RecordConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineDefault2RecordConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/converter/CuisineDefault2ResponseConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineDefault2ResponseConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/converter/CuisineRecord2DefaultConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineRecord2DefaultConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/converter/CuisineRequest2DefaultConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineRequest2DefaultConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/service/impl/CuisineServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/service/impl/CuisineServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/ports/driver/dto/CuisineRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/ports/driver/dto/CreateCuisineRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/ports/driver/dto/CuisineResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/ports/driver/dto/CuisineDetailsResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/ports/driver/service/CuisineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/ports/driver/service/CuisineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/error/CookbookWebExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/error/CookbookWebExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CuisineIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CuisineIntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690332917346</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="moved converter functionalities to adapter">
+      <created>1690557884728</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1690557884728</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,7 +144,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="ignore idea files" />
-    <option name="LAST_COMMIT_MESSAGE" value="ignore idea files" />
+    <MESSAGE value="moved converter functionalities to adapter" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved converter functionalities to adapter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -165,17 +176,17 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineRequest2DefaultConverter.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/converter/CuisineRequest2DefaultConverter.java</url>
           <line>24</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineRequest2DefaultConverter.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/converter/CuisineRequest2DefaultConverter.java</url>
           <line>26</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/converter/CuisineRequest2DefaultConverter.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driven/repository/converter/CuisineRequest2DefaultConverter.java</url>
           <line>25</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
