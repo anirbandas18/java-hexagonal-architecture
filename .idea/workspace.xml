@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0c9282b-6c3d-45a2-916e-f474c8149dc7" name="Changes" comment="moved converter functionalities to adapter/repository because they were persistence related logic">
+    <list default="true" id="d0c9282b-6c3d-45a2-916e-f474c8149dc7" name="Changes" comment="moved error handling logic to appropriate places and refactored spring configurations accordingly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CookbookServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CookbookApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/configuration/CookbookServiceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CookbookConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driver/controller/CuisineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driver/controller/CuisineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/service/impl/CuisineServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/service/impl/CuisineServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/error/CookbookErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/core/internal/CookbookErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/error/CookbookWebExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/cuisine/adapters/driver/error/CookbookWebExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CuisineIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CuisineIntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690558217000</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="moved error handling logic to appropriate places and refactored spring configurations accordingly">
+      <created>1690558976969</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1690558976969</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,7 +150,8 @@
     <MESSAGE value="ignore idea files" />
     <MESSAGE value="moved converter functionalities to adapter" />
     <MESSAGE value="moved converter functionalities to adapter/repository because they were persistence related logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved converter functionalities to adapter/repository because they were persistence related logic" />
+    <MESSAGE value="moved error handling logic to appropriate places and refactored spring configurations accordingly" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved error handling logic to appropriate places and refactored spring configurations accordingly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -162,17 +163,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CuisineIntegrationTest.java</url>
-          <line>170</line>
+          <line>168</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CuisineIntegrationTest.java</url>
-          <line>169</line>
+          <line>167</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/teenthofabud/demo/hexagonal/architecture/cookbook/CuisineIntegrationTest.java</url>
-          <line>163</line>
+          <line>161</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

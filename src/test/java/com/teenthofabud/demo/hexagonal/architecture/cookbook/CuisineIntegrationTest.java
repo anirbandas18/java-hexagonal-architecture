@@ -44,10 +44,8 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
 
     private CuisineJPARepository cuisineRepository;
 
-    private int integrationServicePort;
-
     @Autowired
-    public void setCuisineRepository(CuisineJPARepository cuisineRepository) {
+    public CuisineIntegrationTest(CuisineJPARepository cuisineRepository) {
         this.cuisineRepository = cuisineRepository;
     }
 
