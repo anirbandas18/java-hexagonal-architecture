@@ -4,8 +4,8 @@ import com.teenthofabud.core.common.constant.TOABBaseMessageTemplate;
 import com.teenthofabud.core.common.constant.TOABCascadeLevel;
 import com.teenthofabud.core.common.data.vo.CreatedVo;
 import com.teenthofabud.core.common.data.vo.ErrorVo;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineRequest;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineResponse;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CreateCuisineRequest;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.service.CuisineService;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.error.CookbookErrorCode;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineException;
@@ -56,7 +56,7 @@ public class CuisineController {
     })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CreatedVo postNewCuisine(@RequestBody(required = false) CuisineRequest form) throws CuisineException {
+    public CreatedVo postNewCuisine(@RequestBody(required = false) CreateCuisineRequest form) throws CuisineException {
         log.debug("Requesting to create new cuisine");
         if(form != null) {
             String id = service.createCuisine(form);
@@ -65,7 +65,7 @@ public class CuisineController {
             createdVo.setId(id);
             return createdVo;
         }
-        log.debug("CuisineRequest is null");
+        log.debug("CreateCuisineRequest is null");
         throw new CuisineException(CookbookErrorCode.COOK_ATTRIBUTE_UNEXPECTED,
                 new Object[]{ "form", TOABBaseMessageTemplate.MSG_TEMPLATE_NOT_PROVIDED });
     }
@@ -73,7 +73,7 @@ public class CuisineController {
     @Operation(summary = "Get Cuisine details by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Retrieve the details of Cuisine that matches the given id",
-                    content = { @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = CuisineResponse.class)) }),
+                    content = { @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = CuisineDetailsResponse.class)) }),
             @ApiResponse(responseCode = "400", description = "Cuisine id is invalid",
                     content = { @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = ErrorVo.class)) }),
             @ApiResponse(responseCode = "404", description = "No Cuisine found with the given id",
@@ -81,10 +81,10 @@ public class CuisineController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("{id}")
-    public CuisineResponse getCuisineDetailsById(@PathVariable String id, @RequestParam(required = false)
+    public CuisineDetailsResponse getCuisineDetailsById(@PathVariable String id, @RequestParam(required = false)
     @io.swagger.v3.oas.annotations.Parameter(in = ParameterIn.QUERY, description = "levels of nested fields to be unfolded within the response body")
             String cascadeUntilLevel) throws CuisineException {
-        CuisineResponse cuisineDetails = null;
+        CuisineDetailsResponse cuisineDetails = null;
         log.debug("Requesting all details of cuisine by its id");
         if(StringUtils.hasText(StringUtils.trimWhitespace(id)) && StringUtils.isEmpty(StringUtils.trimWhitespace(cascadeUntilLevel))) {
             cuisineDetails = service.retrieveDetailsById(id, Optional.empty());

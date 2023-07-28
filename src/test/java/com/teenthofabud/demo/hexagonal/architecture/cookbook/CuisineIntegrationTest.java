@@ -6,14 +6,13 @@ import com.teenthofabud.core.common.data.vo.ErrorVo;
 import com.teenthofabud.core.common.error.TOABErrorCode;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineRecord;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository.CuisineJPARepository;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineRequest;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineResponse;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CreateCuisineRequest;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.error.CookbookErrorCode;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -52,12 +51,12 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
         this.cuisineRepository = cuisineRepository;
     }
 
-    private CuisineRequest cuisineRequest;
+    private CreateCuisineRequest createCuisineRequest;
 
-    private CuisineResponse cuisineResponse1;
-    private CuisineResponse cuisineResponse2;
-    private CuisineResponse cuisineResponse3;
-    private CuisineResponse cuisineResponse4;
+    private CuisineDetailsResponse cuisineDetailsResponse1;
+    private CuisineDetailsResponse cuisineDetailsResponse2;
+    private CuisineDetailsResponse cuisineDetailsResponse3;
+    private CuisineDetailsResponse cuisineDetailsResponse4;
     private CuisineRecord cuisineRecord1;
     private CuisineRecord cuisineRecord2;
     private CuisineRecord cuisineRecord3;
@@ -69,9 +68,9 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
     @BeforeEach
     private void init() {
 
-        cuisineRequest = new CuisineRequest();
-        cuisineRequest.setName("New Name");
-        cuisineRequest.setDescription("New Description");
+        createCuisineRequest = new CreateCuisineRequest();
+        createCuisineRequest.setName("New Name");
+        createCuisineRequest.setDescription("New Description");
 
         patches = Arrays.asList(
                 new PatchOperationForm("replace", "/name", "patched name"),
@@ -85,10 +84,10 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
 
         cuisineRecord1 = cuisineRepository.save(cuisineRecord1);
 
-        cuisineResponse1 = new CuisineResponse();
-        cuisineResponse1.setId(cuisineRecord1.getId().toString());
-        cuisineResponse1.setName(cuisineRecord1.getName());
-        cuisineResponse1.setDescription(cuisineRecord1.getDescription());
+        cuisineDetailsResponse1 = new CuisineDetailsResponse();
+        cuisineDetailsResponse1.setId(cuisineRecord1.getId().toString());
+        cuisineDetailsResponse1.setName(cuisineRecord1.getName());
+        cuisineDetailsResponse1.setDescription(cuisineRecord1.getDescription());
 
         cuisineRecord2 = new CuisineRecord();
         cuisineRecord2.setName("Cuisine 2 Name");
@@ -97,10 +96,10 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
 
         cuisineRecord2 = cuisineRepository.save(cuisineRecord2);
 
-        cuisineResponse2 = new CuisineResponse();
-        cuisineResponse2.setId(cuisineRecord2.getId().toString());
-        cuisineResponse2.setName(cuisineRecord2.getName());
-        cuisineResponse2.setDescription(cuisineRecord2.getDescription());
+        cuisineDetailsResponse2 = new CuisineDetailsResponse();
+        cuisineDetailsResponse2.setId(cuisineRecord2.getId().toString());
+        cuisineDetailsResponse2.setName(cuisineRecord2.getName());
+        cuisineDetailsResponse2.setDescription(cuisineRecord2.getDescription());
 
         cuisineRecord3 = new CuisineRecord();
         cuisineRecord3.setName("Cuisine 3 Name");
@@ -109,10 +108,10 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
 
         cuisineRecord3 = cuisineRepository.save(cuisineRecord3);
 
-        cuisineResponse3 = new CuisineResponse();
-        cuisineResponse3.setId(cuisineRecord3.getId().toString());
-        cuisineResponse3.setName(cuisineRecord3.getName());
-        cuisineResponse3.setDescription(cuisineRecord3.getDescription());
+        cuisineDetailsResponse3 = new CuisineDetailsResponse();
+        cuisineDetailsResponse3.setId(cuisineRecord3.getId().toString());
+        cuisineDetailsResponse3.setName(cuisineRecord3.getName());
+        cuisineDetailsResponse3.setDescription(cuisineRecord3.getDescription());
 
         cuisineRecord4 = new CuisineRecord();
         cuisineRecord4.setName("Cuisine 4 Name");
@@ -121,10 +120,10 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
 
         cuisineRecord4 = cuisineRepository.save(cuisineRecord4);
 
-        cuisineResponse4 = new CuisineResponse();
-        cuisineResponse4.setId(cuisineRecord4.getId().toString());
-        cuisineResponse4.setName(cuisineRecord4.getName());
-        cuisineResponse4.setDescription(cuisineRecord4.getDescription());
+        cuisineDetailsResponse4 = new CuisineDetailsResponse();
+        cuisineDetailsResponse4.setId(cuisineRecord4.getId().toString());
+        cuisineDetailsResponse4.setName(cuisineRecord4.getName());
+        cuisineDetailsResponse4.setDescription(cuisineRecord4.getDescription());
 
         cuisineRecord1 = cuisineRepository.save(cuisineRecord1);
         cuisineRecord2 = cuisineRepository.save(cuisineRecord2);
@@ -146,7 +145,7 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
 
         mvcResult = this.mockMvc.perform(post(CUISINE_URI)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(om.writeValueAsString(cuisineRequest)))
+                .content(om.writeValueAsString(createCuisineRequest)))
                 .andDo(print())
                 .andReturn();
 
@@ -160,11 +159,11 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
         MvcResult mvcResult = null;
         String errorCode = TOABErrorCode.SYSTEM_INTERNAL_ERROR.getErrorCode();
         String fieldName = "name";
-        cuisineRequest.setName("");
+        createCuisineRequest.setName("");
 
         mvcResult = mockMvc.perform(post(CUISINE_URI)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(om.writeValueAsString(cuisineRequest)))
+                .content(om.writeValueAsString(createCuisineRequest)))
                 .andDo(print())
                 .andReturn();
 
@@ -241,9 +240,9 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
                 .andReturn();
         Assertions.assertNotNull(mvcResult);
         Assertions.assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(cuisineResponse1.getId(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineResponse.class).getId());
-        Assertions.assertEquals(cuisineResponse1.getName(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineResponse.class).getName());
-        Assertions.assertEquals(cuisineResponse1.getDescription(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineResponse.class).getDescription());
+        Assertions.assertEquals(cuisineDetailsResponse1.getId(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineDetailsResponse.class).getId());
+        Assertions.assertEquals(cuisineDetailsResponse1.getName(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineDetailsResponse.class).getName());
+        Assertions.assertEquals(cuisineDetailsResponse1.getDescription(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineDetailsResponse.class).getDescription());
     }
 
     @Test
@@ -256,9 +255,9 @@ public class CuisineIntegrationTest extends CookbookIntegrationBaseTest {
                 .andReturn();
         Assertions.assertNotNull(mvcResult);
         Assertions.assertEquals(HttpStatus.OK.value(), mvcResult.getResponse().getStatus());
-        Assertions.assertEquals(cuisineResponse1.getId(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineResponse.class).getId());
-        Assertions.assertEquals(cuisineResponse1.getName(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineResponse.class).getName());
-        Assertions.assertEquals(cuisineResponse1.getDescription(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineResponse.class).getDescription());
+        Assertions.assertEquals(cuisineDetailsResponse1.getId(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineDetailsResponse.class).getId());
+        Assertions.assertEquals(cuisineDetailsResponse1.getName(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineDetailsResponse.class).getName());
+        Assertions.assertEquals(cuisineDetailsResponse1.getDescription(), om.readValue(mvcResult.getResponse().getContentAsString(), CuisineDetailsResponse.class).getDescription());
     }
 
 }

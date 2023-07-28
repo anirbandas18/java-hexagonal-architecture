@@ -10,7 +10,7 @@ import lombok.*;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CuisineRequest {
+public class CreateCuisineRequest {
 
     @ToString.Include
     private String name;

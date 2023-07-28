@@ -11,7 +11,7 @@ import lombok.*;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class CuisineResponse extends TOABBaseVo implements Comparable<CuisineResponse> {
+public class CuisineDetailsResponse extends TOABBaseVo implements Comparable<CuisineDetailsResponse> {
 
     @ToString.Include
     private String id;
@@ -22,7 +22,7 @@ public class CuisineResponse extends TOABBaseVo implements Comparable<CuisineRes
     @ToString.Include
     private String description;
     @Override
-    public int compareTo(CuisineResponse o) {
+    public int compareTo(CuisineDetailsResponse o) {
         return Integer.compare(this.getName().compareTo(o.getName()), this.getDescription().compareTo(o.getDescription()));
     }
 }

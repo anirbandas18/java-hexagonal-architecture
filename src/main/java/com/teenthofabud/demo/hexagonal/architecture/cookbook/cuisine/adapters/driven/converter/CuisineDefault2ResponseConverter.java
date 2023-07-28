@@ -1,7 +1,7 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.converter;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter;
 
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.entities.Cuisine;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineResponse;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.converter.Converter;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @Slf4j
-public class CuisineDefault2ResponseConverter implements Converter<Cuisine, CuisineResponse> {
+public class CuisineDefault2ResponseConverter implements Converter<Cuisine, CuisineDetailsResponse> {
 
     private List<String> fieldsToEscape;
 
@@ -21,8 +21,8 @@ public class CuisineDefault2ResponseConverter implements Converter<Cuisine, Cuis
     }
 
     @Override
-    public CuisineResponse convert(Cuisine entity) {
-        CuisineResponse vo = new CuisineResponse();
+    public CuisineDetailsResponse convert(Cuisine entity) {
+        CuisineDetailsResponse vo = new CuisineDetailsResponse();
         if(!fieldsToEscape.contains("id")) {
             vo.setId(entity.getId().toString());
         }

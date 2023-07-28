@@ -1,10 +1,10 @@
 package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.repository;
 
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineRecord;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.converter.CuisineDefault2RecordConverter;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter.CuisineDefault2RecordConverter;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.entities.Cuisine;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driven.CuisineRepository;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.converter.CuisineRecord2DefaultConverter;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter.CuisineRecord2DefaultConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

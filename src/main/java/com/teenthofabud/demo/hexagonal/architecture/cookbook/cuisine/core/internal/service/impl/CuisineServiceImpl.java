@@ -3,14 +3,14 @@ package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.inter
 import com.teenthofabud.core.common.constant.TOABBaseMessageTemplate;
 import com.teenthofabud.core.common.constant.TOABCascadeLevel;
 import com.teenthofabud.core.common.data.dto.TOABRequestContextHolder;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter.CuisineDefault2ResponseConverter;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineException;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineMessageTemplate;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.converter.CuisineDefault2ResponseConverter;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.converter.CuisineRequest2DefaultConverter;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter.CuisineRequest2DefaultConverter;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.entities.Cuisine;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driven.CuisineRepository;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineRequest;
-import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineResponse;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CreateCuisineRequest;
+import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.dto.CuisineDetailsResponse;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.ports.driver.service.CuisineService;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.error.CookbookErrorCode;
 import lombok.extern.slf4j.Slf4j;
@@ -27,20 +27,16 @@ import java.util.*;
 @Slf4j
 public class CuisineServiceImpl implements CuisineService {
 
-    private static final Comparator<CuisineResponse> CMP_BY_NAME_AND_DESCRIPTION = (s1, s2) -> {
-        return Integer.compare(s1.getName().compareTo(s2.getName()), s1.getDescription().compareTo(s2.getDescription()));
-    };
-
-    private CuisineRequest2DefaultConverter form2EntityConverter;
+    private CuisineRequest2DefaultConverter request2DefaultConverter;
     private CuisineDefault2ResponseConverter cuisineDefault2ResponseConverter;
     private CuisineRepository repository;
 
 
     @Autowired
-    public CuisineServiceImpl(CuisineRequest2DefaultConverter form2EntityConverter,
+    public CuisineServiceImpl(CuisineRequest2DefaultConverter request2DefaultConverter,
                               CuisineDefault2ResponseConverter cuisineDefault2ResponseConverter,
                               CuisineRepository repository) {
-        this.form2EntityConverter = form2EntityConverter;
+        this.request2DefaultConverter = request2DefaultConverter;
         this.cuisineDefault2ResponseConverter = cuisineDefault2ResponseConverter;
         this.repository = repository;
     }
@@ -63,7 +59,7 @@ public class CuisineServiceImpl implements CuisineService {
 
     @Transactional(readOnly = true, isolation = Isolation.SERIALIZABLE)
     @Override
-    public CuisineResponse retrieveDetailsById(String id, Optional<TOABCascadeLevel> optionalCascadeLevel) throws CuisineException {
+    public CuisineDetailsResponse retrieveDetailsById(String id, Optional<TOABCascadeLevel> optionalCascadeLevel) throws CuisineException {
         log.info("Requesting Cuisine by id: {}", id);
         Long cuisineId = parseCuisineId(id);
         Optional<Cuisine> optEntity = repository.findById(cuisineId);
@@ -71,23 +67,23 @@ public class CuisineServiceImpl implements CuisineService {
             log.debug("No Cuisine found by id: {}", id);
             throw new CuisineException(CookbookErrorCode.COOK_NOT_FOUND, new Object[] { "id", String.valueOf(id) });
         }
-        log.info("Found CuisineResponse by id: {}", id);
+        log.info("Found CuisineDetailsResponse by id: {}", id);
         Cuisine entity = optEntity.get();
         TOABCascadeLevel cascadeLevel = optionalCascadeLevel.isPresent() ? optionalCascadeLevel.get() : TOABCascadeLevel.ZERO;
         TOABRequestContextHolder.setCascadeLevelContext(cascadeLevel);
-        CuisineResponse response = cuisineDefault2ResponseConverter.convert(entity);
-        log.debug("CuisineResponse populated with fields cascaded to level: {}", cascadeLevel);
+        CuisineDetailsResponse response = cuisineDefault2ResponseConverter.convert(entity);
+        log.debug("CuisineDetailsResponse populated with fields cascaded to level: {}", cascadeLevel);
         TOABRequestContextHolder.clearCascadeLevelContext();
         return response;
     }
 
     @Transactional
     @Override
-    public String createCuisine(CuisineRequest request) throws CuisineException {
+    public String createCuisine(CreateCuisineRequest request) throws CuisineException {
         log.info("Creating new Cuisine");
 
         if(request == null) {
-            log.debug("CuisineRequest provided is null");
+            log.debug("CreateCuisineRequest provided is null");
             throw new CuisineException(CookbookErrorCode.COOK_ATTRIBUTE_UNEXPECTED,
                     new Object[]{ "form", TOABBaseMessageTemplate.MSG_TEMPLATE_NOT_PROVIDED });
         }
@@ -96,12 +92,12 @@ public class CuisineServiceImpl implements CuisineService {
         /**
          * Business logic: after 17:00 UTC throw exception
          */
-        OffsetDateTime now = OffsetDateTime.now(ZoneOffset.UTC);
+        OffsetDateTime now = OffsetDateTime.now(ZoneOffset.UTC); // TODO: move to a interface for unit testability using mock
         if(now.getHour() > 17) {
             throw new CuisineException(CookbookErrorCode.COOK_ACTION_FAILURE, new Object[] { "create", "not allowed after 17:00 UTC" });
         }
 
-        Cuisine expectedEntity = form2EntityConverter.convert(request);
+        Cuisine expectedEntity = request2DefaultConverter.convert(request);
 
         log.debug(CuisineMessageTemplate.MSG_TEMPLATE_CUISINE_EXISTENCE_BY_NAME.getValue(), request.getName());
         if(repository.existsByName(expectedEntity.getName())) {
@@ -118,9 +114,9 @@ public class CuisineServiceImpl implements CuisineService {
         if(actualEntity == null) {
             log.debug("Unable to create {}", expectedEntity);
             throw new CuisineException(CookbookErrorCode.COOK_ACTION_FAILURE,
-                    new Object[]{ "creation", "unable to persist CuisineRequest details" });
+                    new Object[]{ "creation", "unable to persist CreateCuisineRequest details" });
         }
-        log.info("Created new CuisineRequest with id: {}", actualEntity.getId());
+        log.info("Created new CreateCuisineRequest with id: {}", actualEntity.getId());
         return actualEntity.getId().toString();
     }
 

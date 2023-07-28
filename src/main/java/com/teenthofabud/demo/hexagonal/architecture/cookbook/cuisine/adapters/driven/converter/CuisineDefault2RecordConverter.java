@@ -1,4 +1,4 @@
-package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.converter;
+package com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.converter;
 
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.adapters.driven.data.CuisineRecord;
 import com.teenthofabud.demo.hexagonal.architecture.cookbook.cuisine.core.internal.entities.Cuisine;
